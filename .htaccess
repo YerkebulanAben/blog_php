@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteRule ^(.*)$ index.php
+Options -Indexes
+
+<FilesMatch "\.(php|twig|log)$">
+	Deny from all
+</FilesMatch>
+
+<FilesMatch "^index.(php)$">
+	Allow from all
+</FilesMatch>

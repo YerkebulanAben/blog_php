@@ -1,4 +1,5 @@
 <h1><?=$content['title']?></h1>
+<p>Category: <?=$content['cat_title']?></p>
 <hr>
 <div>
     <?=$content['content']?>

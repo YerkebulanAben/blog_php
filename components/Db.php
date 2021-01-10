@@ -29,7 +29,18 @@ class Db
             $error = new Errors;
             $error -> actionError500();
         }
-        else $this -> result = $this -> query -> fetchAll();
+        else 
+        {
+            if($this -> query -> rowCount() > 1)
+            {
+                $this -> result = $this -> query -> fetchAll();
+            }
+            else
+            {
+                $this -> result = $this -> query -> fetch();   
+            }
+
+        }
     }
 
     private function dbCheckErrors()

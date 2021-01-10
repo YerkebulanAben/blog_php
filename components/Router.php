@@ -18,7 +18,9 @@ class Router
         foreach( $routes as $pattern => $route)
         {
             if(preg_match("~$pattern~", $url))
+            //if(preg_replace("~$pattern~", $route, $url))
             {
+                $route = preg_replace("~$pattern~", $route, $url);
                 $components = explode('/', $route);
                 $controllerName = ucfirst(array_shift($components));
                 $controllerAction = 'action' . ucfirst(array_shift($components));

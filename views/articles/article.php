@@ -5,4 +5,5 @@
     <?=$content['content']?>
 </div>
 <hr>
+<a href = "<?=ROOT?>article/remove/<?=$content['id_article']?>">Remove article</a>
 <p>Date added:<?=$content['dt_add']?></p>

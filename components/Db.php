@@ -24,6 +24,7 @@ class Db
         $this -> dbConnect();
         $this -> query = $this::$db -> prepare($stmt);
         $this -> query -> execute($params);
+        //print_r($this -> query -> errorInfo());
         if($this -> dbCheckErrors())
         {
             $error = new Errors;

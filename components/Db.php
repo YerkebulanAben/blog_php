@@ -21,6 +21,7 @@ class Db
 
     public function dbQuery($stmt, $params = [])
     {
+
         $this -> dbConnect();
         $this -> query = $this::$db -> prepare($stmt);
         $this -> query -> execute($params);
@@ -40,7 +41,6 @@ class Db
             {
                 $this -> result = $this -> query -> fetch();   
             }
-
         }
     }
 

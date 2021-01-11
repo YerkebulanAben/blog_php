@@ -8,6 +8,9 @@ return [
 '^article/add/?$' => 'AddArticle/Add',
 '^article/remove/([0-9].*)/?$' => 'RemoveArticle/Remove/$1',
 '^article/edit/([0-9].*)/?$' => 'EditArticle/Edit/$1',
+//Пользователи
+'^user/login/?$' => 'SiteUser/Login',
+'^user/logout/?$' => 'SiteUser/Logout',
 //Страница ошибки
 '.*' => 'Errors/Error404'
 ];

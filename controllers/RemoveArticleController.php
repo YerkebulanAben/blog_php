@@ -5,5 +5,6 @@ class RemoveArticle
     public function actionRemove($id)
     {
         Article::removeArticle($id);
+        header('Location: ' . ROOT);
     } 
 }

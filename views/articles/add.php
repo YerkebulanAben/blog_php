@@ -3,7 +3,7 @@
     <input type = "text" name = "title">
     <br>
     Content: <br>
-    <textarea name = "content"> </textarea>
+    <textarea name = "content" cols = "60" rows = "10"> </textarea>
     <br>
     Category: 
     <select name = "category">

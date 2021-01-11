@@ -32,6 +32,17 @@ class Article
         $db = new Db;
         $stmt = 'DELETE FROM articles WHERE id_article = :id';
         $db -> dbQuery($stmt,['id' => $id]);
-        header('Location: /myprojects/zinchenko/blog_oop/');
+        return true;
     } 
+
+    public static function editArticle($id, $title, $content, $category)
+    {
+        $db = new Db;
+        $stmt = 'UPDATE articles SET title = :title, content = :content, id_cat = :cat WHERE id_article = :id';
+        $db -> dbQuery($stmt, ['title' => $title,
+                                'content' => $content,
+                                'cat' => $category,
+                                'id' => $id]);
+        return true;
+    }
 }

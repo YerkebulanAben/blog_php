@@ -10,7 +10,7 @@ class AddArticle
             $content = $_POST['content'];
             $category = $_POST['category'];
             Article::addArticle($title, $content, $category);
-            header('Location: /myprojects/zinchenko/blog_oop/');
+            header('Location: ' . ROOT);
         }
         else
         {

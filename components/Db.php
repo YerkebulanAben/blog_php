@@ -52,4 +52,9 @@ class Db
         }
         else return false; 
     }
+
+    public function dbGetRowCount()
+    {
+        return $this -> query -> rowCount();
+    }
 }

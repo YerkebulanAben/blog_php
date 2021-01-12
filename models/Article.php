@@ -19,20 +19,20 @@ class Article
         return $db ->result;
     }
 
-    public static function addArticle($title, $content, $category)
+    public static function addArticle($title, $content, $category, $un)
     {
         $db = new Db;
-        $stmt = 'INSERT INTO articles(title,content,id_cat) VALUES(:title,:content,:id_cat)';
-        $db -> dbQuery($stmt, ['title' => $title, 'content' => $content, 'id_cat' => $category]);
+        $stmt = 'INSERT INTO articles(title,content,id_cat,id_user) VALUES(:title,:content,:id_cat,:id_user)';
+        $db -> dbQuery($stmt, ['title' => $title, 'content' => $content, 'id_cat' => $category, 'id_user' => $un]);
         return true;
     }
     
-    public static function removeArticle($id)
+    public static function removeArticle($id, $un)
     {
         $db = new Db;
-        $stmt = 'DELETE FROM articles WHERE id_article = :id';
-        $db -> dbQuery($stmt,['id' => $id]);
-        return true;
+        $stmt = 'DELETE FROM articles WHERE id_article = :id AND id_user = :id_user';
+        $db -> dbQuery($stmt,['id' => $id, 'id_user' => $un]);
+        return $db->dbGetRowCount();
     } 
 
     public static function editArticle($id, $title, $content, $category)
@@ -44,5 +44,17 @@ class Article
                                 'cat' => $category,
                                 'id' => $id]);
         return true;
+    }
+
+    public static function checkAuthor($id, $un)
+    {
+        $db = new Db;
+        $stmt = 'SELECT * FROM articles WHERE id_article = :id AND id_user = :id_user';
+        $db -> dbQuery($stmt, ['id' => $id, 'id_user' => $un]);
+        if($db ->dbGetRowCount() === 1)
+        {
+            return true;
+        }
+        else return false;
     }
 }

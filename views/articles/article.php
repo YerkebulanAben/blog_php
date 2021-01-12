@@ -5,7 +5,7 @@
     <?=$content['content']?>
 </div>
 <hr>
-<? if($GLOBALS['session']) : ?>
+<? if($GLOBALS['session'] && $author) : ?>
     <a href = "<?=ROOT?>article/remove/<?=$content['id_article']?>">Remove article</a>
     <a href = "<?=ROOT?>article/edit/<?=$content['id_article']?>">Edit article</a>
 <? endif; ?>

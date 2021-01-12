@@ -9,7 +9,8 @@ class AddArticle
             $title = $_POST['title'];
             $content = $_POST['content'];
             $category = $_POST['category'];
-            Article::addArticle($title, $content, $category);
+            $un = $_SESSION['user'];
+            Article::addArticle($title, $content, $category, $un);
             header('Location: ' . ROOT);
         }
         else

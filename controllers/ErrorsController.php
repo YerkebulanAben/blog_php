@@ -15,4 +15,11 @@ class Errors
         include_once('views/errors/error500.php');
         exit();
     }
+
+    public function actionError401()
+    {
+        http_response_code(401);
+        include_once('views/errors/error401.php');
+        exit();
+    }
 }

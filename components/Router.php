@@ -22,6 +22,15 @@ class Router
             {
                 $route = preg_replace("~$pattern~", $route, $url);
                 $components = explode('/', $route);
+                if($components[0] === 'Auth')
+                {
+                    if(!$GLOBALS['session'])
+                    {
+                        $error = new Errors;
+                        $error -> actionError401();
+                    }
+                    else unset($components[0]);
+                }
                 $controllerName = ucfirst(array_shift($components));
                 $controllerAction = 'action' . ucfirst(array_shift($components));
                 $params = $components;

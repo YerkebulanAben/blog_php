@@ -4,6 +4,8 @@
     <br>
     Password: <br>
     <input type = "password" name = "password">
+    <br>
+    Remember me for 30 days: <input type = "checkbox" name = "rememberMe">
     <br><br>
     <input type = "submit" name = "submit">
 </form>

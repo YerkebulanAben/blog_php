@@ -8,7 +8,12 @@ class SiteUser
         {
             $un = $_POST['username'];
             $pwd = $_POST['password'];
-            $result = User::login($un,$pwd);
+            $remember = false;
+            if(isset($_POST['rememberMe']))
+            {
+                $remember = true;
+            }
+            $result = User::login($un,$pwd,$remember);
             $error = null;
             if(isset($result[1]))
             {
@@ -16,7 +21,6 @@ class SiteUser
                 include_once('views/user/login.php');
                 exit();
             }
-            $_SESSION['status'] = 'loggedIn';
             header('Location: ' . ROOT);
         }
         

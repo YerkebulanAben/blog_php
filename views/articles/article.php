@@ -5,6 +5,8 @@
     <?=$content['content']?>
 </div>
 <hr>
-<a href = "<?=ROOT?>article/remove/<?=$content['id_article']?>">Remove article</a>
-<a href = "<?=ROOT?>article/edit/<?=$content['id_article']?>">Edit article</a>
+<? if($GLOBALS['session']) : ?>
+    <a href = "<?=ROOT?>article/remove/<?=$content['id_article']?>">Remove article</a>
+    <a href = "<?=ROOT?>article/edit/<?=$content['id_article']?>">Edit article</a>
+<? endif; ?>
 <p>Date added:<?=$content['dt_add']?></p>

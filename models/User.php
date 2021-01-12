@@ -2,7 +2,7 @@
 
 class User
 {
-    public static function login($un, $pwd)
+    public static function login($un, $pwd,$remember)
     {
         $db = new Db;
         $stmt = 'SELECT * FROM users WHERE username = :username';
@@ -19,18 +19,48 @@ class User
             $error = 'Incorrect password';
             return [$result, $error];
         }
-
+        if($remember)
+        {
+            $value = bin2hex(random_bytes(32));
+            setcookie('rememberMe', $value, time() + 3600 * 24 * 30, '/');
+            User::startSession($db, $result['id_user'], $value);
+        }
+        $_SESSION['status'] = 'loggedIn';
+        $_SESSION['user'] = $result['id_user'];
         return [$result];
-        
     }
 
     public static function logout()
     {
+        $db = new Db;
+        $stmt = 'DELETE FROM sessions WHERE id_user = :user';
+        $db -> dbQuery($stmt, ['user' => $_SESSION['user']]);
         unset($_SESSION['status']);
+        unset($_SESSION['user']);
+        setcookie('rememberMe', $_COOKIE['rememberMe'], time() - 3600, '/');
     } 
 
     public static function register()
     {
 
     } 
+
+    public static function startSession($db, $user, $cookie)
+    {
+        $stmt = 'INSERT INTO sessions VALUES(DEFAULT,:cookie,:user)';
+        $db->dbQuery($stmt, ['user' => $user, 'cookie' => $cookie]);
+    }
+
+    public static function checkSession($cookie)
+    {
+        $db = new Db;
+        $stmt = 'SELECT * FROM sessions WHERE cookie_value = :cookie';
+        $db -> dbQuery($stmt, ['cookie' => $cookie]);
+        $result = $db->result;
+        if(empty($result))
+        {
+            return false;
+        }
+        else return true;
+    }
 }

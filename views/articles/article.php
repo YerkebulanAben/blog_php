@@ -1,5 +1,5 @@
 <h1><?=$content['title']?></h1>
-<p>Category: <?=$content['cat_title']?></p>
+<a href = "<?=ROOT?>bycategory/<?=$content['id_cat']?>"><p>Category: <?=$content['cat_title']?></p></a>
 <hr>
 <div>
     <?=$content['content']?>

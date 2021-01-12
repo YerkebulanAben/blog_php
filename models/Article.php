@@ -57,4 +57,12 @@ class Article
         }
         else return false;
     }
+
+    public static function articlesByCat($id_cat)
+    {
+        $db = new Db;
+        $stmt = 'SELECT * FROM articles WHERE id_cat = :id_cat';
+        $db -> dbQuery($stmt, ['id_cat' => $id_cat]);
+        return $db ->result;
+    } 
 }

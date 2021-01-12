@@ -8,6 +8,7 @@ return [
 '^article/add/?$' => 'Auth/AddArticle/Add',
 '^article/remove/([0-9].*)/?$' => 'Auth/RemoveArticle/Remove/$1',
 '^article/edit/([0-9].*)/?$' => 'Auth/EditArticle/Edit/$1',
+'^bycategory/([0-9].*)/?$' => 'ArticlesByCat/ShowArticlesByCat/$1',
 //Пользователи
 '^user/login/?$' => 'SiteUser/Login',
 '^user/logout/?$' => 'SiteUser/Logout',

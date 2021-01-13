@@ -14,6 +14,7 @@ class Router
     public function run()
     {
         $url = $this -> getUrl();
+        //echo $url . '<br>';
         $routes = require_once('routes.php');
         foreach( $routes as $pattern => $route)
         {
@@ -21,7 +22,9 @@ class Router
             //if(preg_replace("~$pattern~", $route, $url))
             {
                 $route = preg_replace("~$pattern~", $route, $url);
+                //var_dump($route);
                 $components = explode('/', $route);
+                
                 if($components[0] === 'Auth')
                 {
                     if(!$GLOBALS['session'])

@@ -13,5 +13,5 @@ return [
 '^user/login/?$' => 'SiteUser/Login',
 '^user/logout/?$' => 'SiteUser/Logout',
 //Страница ошибки
-'.*' => 'Errors/Error404'
+'^.*$' => 'Errors/Error404'
 ];

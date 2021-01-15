@@ -1,3 +1,5 @@
+<a href = "<?=ROOT?>">Main page</a>
+<br>
 <form method = "post">
     Title: <br>
     <input type = "text" name = "title">

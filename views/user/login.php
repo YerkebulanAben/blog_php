@@ -1,3 +1,5 @@
+<a href = "<?=ROOT?>">Main page</a>
+<br>
 <form method = "post">
     Username: <br>
     <input type = "text" name = "username" value = <?=$un?>>

@@ -33,13 +33,17 @@ class Db
         }
         else 
         {
-            if($this -> query -> rowCount() > 1)
+            // if($this -> query -> rowCount() > 1)
+            // {
+            //     $this -> result = $this -> query -> fetchAll();
+            // }
+            // else
+            // {
+            //     $this -> result = $this -> query -> fetch();   
+            // }
+            while($row = $this->query->fetch())
             {
-                $this -> result = $this -> query -> fetchAll();
-            }
-            else
-            {
-                $this -> result = $this -> query -> fetch();   
+                $this -> result[] = $row;
             }
         }
     }

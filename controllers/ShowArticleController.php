@@ -2,7 +2,7 @@
 
 class ShowArticle
 {
-    public function actionIndex($id)
+    public function actionIndex(string $id) : void
     {
         $content = Article::showArticle($id);
         $author = Article::checkAuthor($id, @$_SESSION['user']);

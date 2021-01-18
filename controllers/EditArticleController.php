@@ -2,7 +2,7 @@
 
 class EditArticle
 {
-    public function actionEdit($id)
+    public function actionEdit(string $id) : void
     {
         $title = '';
         $content = '';

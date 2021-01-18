@@ -2,7 +2,7 @@
 
 class Article
 {
-    public static function showAllArticles()
+    public static function showAllArticles() : array
     {
         $db = new Db;
         $stmt = 'SELECT * FROM articles';
@@ -10,7 +10,7 @@ class Article
         return $db ->result;
     }
 
-    public static function showArticle($id)
+    public static function showArticle(string $id) : array
     {
         $db = new Db;
         $stmt = 'SELECT a.*, b.title as cat_title FROM articles a INNER JOIN categories b ON a.id_cat = b.id_cat 
@@ -19,7 +19,7 @@ class Article
         return $db ->result;
     }
 
-    public static function addArticle($title, $content, $category, $un)
+    public static function addArticle(string $title, string $content, string $category, string $un) : bool
     {
         $db = new Db;
         $stmt = 'INSERT INTO articles(title,content,id_cat,id_user) VALUES(:title,:content,:id_cat,:id_user)';
@@ -30,7 +30,7 @@ class Article
         return true;
     }
     
-    public static function removeArticle($id, $un)
+    public static function removeArticle(string $id, string $un) : int
     {
         $db = new Db;
         $stmt = 'DELETE FROM articles WHERE id_article = :id AND id_user = :id_user';
@@ -39,7 +39,7 @@ class Article
         return $db->dbGetRowCount();
     } 
 
-    public static function editArticle($id, $title, $content, $category)
+    public static function editArticle(string $id, string $title, string $content, string $category) : bool
     {
         $db = new Db;
         $stmt = 'UPDATE articles SET title = :title, content = :content, id_cat = :cat WHERE id_article = :id';
@@ -50,7 +50,7 @@ class Article
         return true;
     }
 
-    public static function checkAuthor($id, $un)
+    public static function checkAuthor(string $id, string $un) : bool
     {
         $db = new Db;
         $stmt = 'SELECT * FROM articles WHERE id_article = :id AND id_user = :id_user';
@@ -63,7 +63,7 @@ class Article
         else return false;
     }
 
-    public static function articlesByCat($id_cat)
+    public static function articlesByCat(string $id_cat) : array
     {
         $db = new Db;
         $stmt = 'SELECT * FROM articles WHERE id_cat = :id_cat';

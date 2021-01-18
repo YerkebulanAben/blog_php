@@ -2,7 +2,7 @@
 
 class RemoveArticle
 {
-    public function actionRemove($id)
+    public function actionRemove(string $id) : void
     {
         $un = $_SESSION['user'];
         $result = Article::removeArticle($id, $un);
@@ -11,6 +11,7 @@ class RemoveArticle
             $error = new Errors;
             $error -> actionError401();
         }
+        $_SESSION['articleRemoved'] = true;
         header('Location: ' . ROOT);
     } 
 }

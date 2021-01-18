@@ -2,12 +2,12 @@
 
 class Db
 {
-    private static $db;
-    private $query;
-    public $result;
-    public $errors = [];
+    private static  PDO $db;
+    private PDOStatement $query;
+    public array $result;
+    public array $errors = [];
 
-    private function dbConnect()
+    private function dbConnect() : PDO
     {
         $creds = require_once('configs/db_credentials.php');
 
@@ -19,7 +19,7 @@ class Db
         return $this::$db;
     }
 
-    public function dbQuery($stmt, $params = [])
+    public function dbQuery(string $stmt, array $params = []) : void
     {
 
         $this -> dbConnect();
@@ -48,7 +48,7 @@ class Db
         }
     }
 
-    private function dbCheckErrors()
+    private function dbCheckErrors() : bool
     {
         if($this -> query -> errorInfo()[1])
         {
@@ -57,7 +57,7 @@ class Db
         else return false; 
     }
 
-    public function dbGetRowCount()
+    public function dbGetRowCount() : int
     {
         return $this -> query -> rowCount();
     }

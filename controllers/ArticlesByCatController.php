@@ -2,7 +2,7 @@
 
 class ArticlesByCat
 {
-    public function actionShowArticlesByCat($id_cat)
+    public function actionShowArticlesByCat(string $id_cat) : void
     {
         $content = Article::articlesByCat($id_cat);
         $category = Category::getCategory($id_cat);

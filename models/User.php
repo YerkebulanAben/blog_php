@@ -2,7 +2,7 @@
 
 class User
 {
-    public static function login($un, $pwd,$remember)
+    public static function login(string $un, string $pwd, string $remember) : array
     {
         $db = new Db;
         $stmt = 'SELECT * FROM users WHERE username = :username';
@@ -33,7 +33,7 @@ class User
         return [$result];
     }
 
-    public static function logout()
+    public static function logout() : void
     {
         $db = new Db;
         $stmt = 'DELETE FROM sessions WHERE id_user = :user';
@@ -48,13 +48,13 @@ class User
 
     } 
 
-    public static function startSession($db, $user, $cookie)
+    public static function startSession(Db $db, string $user, string $cookie) : void
     {
         $stmt = 'INSERT INTO sessions VALUES(DEFAULT,:cookie,:user)';
         $db->dbQuery($stmt, ['user' => $user, 'cookie' => $cookie]);
     }
 
-    public static function checkSession($cookie)
+    public static function checkSession(string $cookie) : bool
     {
         $db = new Db;
         $stmt = 'SELECT * FROM sessions WHERE cookie_value = :cookie';

@@ -2,16 +2,16 @@
 
 class Router
 {
-    private $routes;
+    private array $routes;
 
-    private function getUrl()
+    private function getUrl() : string
     {
         $url = $_SERVER['REQUEST_URI'];
 
         return trim(str_replace(ROOT, '', $url), '/ ');
     }
     
-    public function run()
+    public function run() : void
     {
         $url = $this -> getUrl();
         //echo $url . '<br>';

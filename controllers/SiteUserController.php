@@ -1,7 +1,7 @@
 <?php
 class SiteUser
 {
-    public function actionLogin()
+    public function actionLogin() : void
     {
         $un = '';
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']))
@@ -32,7 +32,7 @@ class SiteUser
         
     }
 
-    public function actionLogout()
+    public function actionLogout() : void
     {
         User::logout();
         header('Location: ' . ROOT);

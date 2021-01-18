@@ -2,7 +2,7 @@
 
 class Site
 {
-    public function actionIndex()
+    public function actionIndex() : void
     {
        $content = Article::showAllArticles();
        if($content === null)

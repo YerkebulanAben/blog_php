@@ -2,7 +2,7 @@
 
 class AddArticle
 {
-    public static function actionAdd()
+    public static function actionAdd() : void
     {
         $title = '';
         $content = '';
@@ -28,6 +28,7 @@ class AddArticle
             {
                 Article::addArticle($title, $content, $category, $un);
                 header('Location: ' . ROOT);
+                $_SESSION['articleAdded'] = true;
             }
             else
             {

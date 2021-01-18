@@ -2,7 +2,7 @@
 
 class Category
 {
-    public static function getAllCategories()
+    public static function getAllCategories() : array
     {
         $db = new Db;
         $stmt = 'SELECT * FROM categories';
@@ -10,7 +10,7 @@ class Category
         return $db ->result;
     }
 
-    public static function getCategory($id)
+    public static function getCategory(string $id) : array
     {
         $db = new Db;
         $stmt = 'SELECT * FROM categories WHERE id_Cat = :id';

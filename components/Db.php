@@ -43,7 +43,7 @@ class Db
             // }
             while($row = $this->query->fetch())
             {
-                $this -> result[] = $row;
+                $this ->result[] = $row;
             }
         }
     }

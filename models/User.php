@@ -6,15 +6,18 @@ class User
     {
         $db = new Db;
         $stmt = 'SELECT * FROM users WHERE username = :username';
-        $db -> dbQuery($stmt, ['username' => $un]);
+        $db -> dbQuery($stmt, ['username' => htmlspecialchars($un)]);
         $result = $db ->result;
+        // echo '<pre>';
+        // var_dump($result);
+        // echo '</pre>';
         $error = '';
         if(empty($result))
         {
             $error = 'User does not exist';
             return [$result, $error];
         }
-        if(!password_verify($pwd, $result['password']))
+        if(!password_verify($pwd, $result[0]['password']))
         {
             $error = 'Incorrect password';
             return [$result, $error];
@@ -23,10 +26,10 @@ class User
         {
             $value = bin2hex(random_bytes(32));
             setcookie('rememberMe', $value, time() + 3600 * 24 * 30, '/');
-            User::startSession($db, $result['id_user'], $value);
+            User::startSession($db, $result[0]['id_user'], $value);
         }
         $_SESSION['status'] = 'loggedIn';
-        $_SESSION['user'] = $result['id_user'];
+        $_SESSION['user'] = $result[0]['id_user'];
         return [$result];
     }
 
@@ -55,7 +58,7 @@ class User
     {
         $db = new Db;
         $stmt = 'SELECT * FROM sessions WHERE cookie_value = :cookie';
-        $db -> dbQuery($stmt, ['cookie' => $cookie]);
+        $db -> dbQuery($stmt, ['cookie' => htmlspecialchars($cookie)]);
         $result = $db->result;
         if(empty($result))
         {

@@ -14,7 +14,7 @@ class Category
     {
         $db = new Db;
         $stmt = 'SELECT * FROM categories WHERE id_Cat = :id';
-        $db ->dbQuery($stmt, ['id' => $id]);
+        $db ->dbQuery($stmt, ['id' => htmlspecialchars($id)]);
         return $db ->result;
     } 
 }

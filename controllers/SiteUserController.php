@@ -17,6 +17,9 @@ class SiteUser
             $error = null;
             if(isset($result[1]))
             {
+                // echo '<pre>';
+                // var_dump($result);
+                // echo '</pre>';
                 $error = $result[1];
                 include_once('views/user/login.php');
                 exit();

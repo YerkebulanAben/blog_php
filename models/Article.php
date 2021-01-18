@@ -50,7 +50,7 @@ class Article
         return true;
     }
 
-    public static function checkAuthor(string $id, string $un) : bool
+    public static function checkAuthor(?string $id, ?string $un) : bool
     {
         $db = new Db;
         $stmt = 'SELECT * FROM articles WHERE id_article = :id AND id_user = :id_user';

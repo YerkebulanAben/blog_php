@@ -30,6 +30,7 @@ class User
         }
         $_SESSION['status'] = 'loggedIn';
         $_SESSION['user'] = $result[0]['id_user'];
+        $_SESSION['username'] = $result[0]['username'];
         return [$result];
     }
 

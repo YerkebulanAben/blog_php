@@ -11,3 +11,25 @@
     <a href = "<?=ROOT?>article/edit/<?=$content[0]['id_article']?>">Edit article</a>
 <? endif; ?>
 <p>Date added:<?=$content[0]['dt_add']?></p>
+<hr>
+<h2>Comments:</h2>
+<table>
+<? foreach($comments as $id => $comment) : ?>
+    <tr>
+        <td><?=$comment['username'] ?></td>
+        <td><?=$comment['text'] ?></td>
+        <td><?=$comment['dt_add']?></td>
+    </tr>
+<? endforeach; ?>
+</table>
+<? if($GLOBALS['session']) : ?>
+    <h3>Add your comment</h3>
+    <form method = 'post'>
+        <textarea name = "text" rows = "5" cols = "50"><?=$user_comment?></textarea>
+        <br><br>
+        <input type = "submit" name = "submit" value = "Add comment">
+    </form>
+<? endif; ?>
+<? if($error) :?>
+    <p><?=$error?></p>
+<? endif; ?>

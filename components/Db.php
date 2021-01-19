@@ -4,7 +4,7 @@ class Db
 {
     private static  PDO $db;
     private PDOStatement $query;
-    public array $result;
+    public array $result = [];
     public array $errors = [];
 
     private function dbConnect() : PDO
